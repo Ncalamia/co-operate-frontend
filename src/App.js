@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import AddItem from './components/AddItem';
 
 const App = () => {
 
@@ -55,20 +56,17 @@ const getEmployees = () => {
 
   return (
     <div>
-      <h1>Hi</h1>
       <div className="employees">
  {employees.map((employee) => {
    return (
      <div className="employee" key={employee.id}>
-       <h4>Name: {employee.name}</h4>
-       <h5>Item: {employee.item}</h5>
-       <h5>Image: {employee.image}</h5>
+       <AddItem employee={employee}/>
      </div>
    )
  })}
 </div>
     </div>
-  );
+  )
 }
 
 export default App;
