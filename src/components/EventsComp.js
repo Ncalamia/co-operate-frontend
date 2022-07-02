@@ -15,7 +15,6 @@ const EventsComp = (props) => {
             <h5>Time: {props.party.time}</h5>
             <h5>Where: {props.party.where}</h5>
             <h5>More Info: {props.party.notes}</h5>
-            <button>Add</button>
         </div>
       )
     }
