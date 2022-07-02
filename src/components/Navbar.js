@@ -9,6 +9,7 @@ const Navbar = () => {
             <Link to="/events"> Events </Link>
             <Link to="/updates"> Updates </Link>
             <Link to="/appreciation"> Employee Appreciation </Link> 
+            <Link to="/admin"> Admin</Link> 
         </div>
     )
 }
