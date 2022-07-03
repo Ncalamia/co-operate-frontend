@@ -38,6 +38,10 @@ const handleSubmit = (event) => {
                 <br />
                 <input type="submit" />
             </form>
+            {props.loginError ? <div>
+                <h3>Username or password is incorrent. Please try again.</h3>
+            </div> : ""}
+            
         </div>
     )
 }

@@ -7,8 +7,10 @@ const AddEvent = (props) => {
 //////////////////////////////
 
 let emptyParty = { title: '', when: '', time: '', where: '', notes:'' }
+
 const [party, setParty] = useState(emptyParty)
 
+///////// Add party/event /////////
 
 const handleChange = (event) => {
     setParty({ ...party, [event.target.name]: event.target.value })

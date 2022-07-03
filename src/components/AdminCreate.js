@@ -34,7 +34,7 @@ const handleSubmit = (event) => {
 
     return (
         <div>
-            <h1>Only 1 admin account allowed, once you sign up you are unable to change the username or password.</h1> 
+            <h3>Only 2 admin accounts allowed, once you sign up you are unable to change the username or password.</h3> 
             <h1>Sign up below</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
