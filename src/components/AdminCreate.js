@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import AdminAccLogin from './AdminAccLogin'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 
 
@@ -15,8 +15,6 @@ let emptyAdmin = { username: '', password: '' }
 
 const [admin, setAdmin] = useState(emptyAdmin)
 
-const [goToLogin, setGoToLogin] = useState(false)
-
 
 ///////// Functions ///////////////
 
@@ -28,7 +26,7 @@ const handleSubmit = (event) => {
     event.preventDefault()
     props.createAdmin(admin)
     setAdmin({ username: '', password: '' })
-    setGoToLogin(true)
+    props.setView('login')
 }
 
 
@@ -49,7 +47,6 @@ const handleSubmit = (event) => {
                 <br />
                 <input type="submit" />
             </form> 
-            {goToLogin ? <Navigate to="/admin/login"/> : ""}
         </div>
     )
 }

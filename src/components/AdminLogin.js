@@ -17,10 +17,18 @@ const AdminLogin = () => {
 
 const [admins, setAdmins] = useState([])
 const [adminLimit, setAdminLimit] = useState(false)
+const [view, setView] = useState()
+const [adminLoggedIn, setAdminLoggedIn] = useState(false)
 
 
 ///////// Functions ///////////////
 
+
+///////// Hide/Show Admin Login/Sign Up ///////////////
+
+const toggleView = (param) => {
+    setView(param)
+}
 
 ///////// URLs ///////////////
 const LOCAL_URL_useraccounts = 'http://localhost:8000/api/useraccount'
@@ -28,14 +36,14 @@ const LOCAL_URL_useraccounts = 'http://localhost:8000/api/useraccount'
 const HEROKU_URL_useraccount = 'https://co-operate-backend.herokuapp.com/api/useraccount'
 
 const numOfAdmins = () => {
-    console.log(admins)
     if (admins.length > 1) {
         setAdminLimit(false)
         alert("Admin account was already created. Please login")
     } else {
-        setAdminLimit(true)
+        setView('createAdmin')
     }
 }
+
 
 //////// READ / FETCH ////////////////
 const getAdmins = () => {
@@ -54,16 +62,16 @@ const createAdmin = (addAdmin) => {
     axios
         .post(HEROKU_URL_useraccount, addAdmin)
         .then((response) => {
-            console.log(response)
-            // getUsers()
             setAdmins([...admins, response.data])
+            setView('login')
         })
 }
 
 // returning admin login
 const handleUpdateAdmin = (adminAccount) => {
+    console.log(adminAccount)
     axios
-        .put(HEROKU_URL_useraccount, adminAccount)
+        .put(HEROKU_URL_useraccount + "/login/" + adminAccount)
         .catch((error) => {
             if (error) {
                 alert("Username or password does not match records")
@@ -71,7 +79,7 @@ const handleUpdateAdmin = (adminAccount) => {
         })
         .then((response) => {
             console.log(adminAccount)
-            console.log(response.data)
+            setAdminLoggedIn(true)
     })
 }
 
@@ -86,10 +94,10 @@ useEffect(() => {
     return (
         <div>
             <button onClick={()=> numOfAdmins()}>Create Admin Account</button>
-            <button><Link to="/admin/login">Login</Link></button>
-            <div>AdminLogin</div>
-        {adminLimit ?  
-            <AdminCreate createAdmin={createAdmin}/> : "" }
+            <button onClick={()=> toggleView('login')}>Login</button>
+        {view == 'login' ? <AdminAccLogin handleUpdateAdmin={handleUpdateAdmin} admins={admins}/> : ""}
+        {view == 'createAdmin' ?  
+            <AdminCreate createAdmin={createAdmin} setView={setView}/> : "" }
         </div>
     )
 }

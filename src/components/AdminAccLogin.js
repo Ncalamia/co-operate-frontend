@@ -8,8 +8,7 @@ const AdminAccLogin = (props) => {
 //////// States ////////////////
 //////////////////////////////
 
-const [loggedin, setLoggedIn] = useState()
-const [adminSignIn, setAdminSignIn] = useState()
+const [adminSignIn, setAdminSignIn] = useState({...props.adminSignIn})
 
 //////////// Functions ////////////////
 
@@ -20,6 +19,7 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
     event.preventDefault()
+    console.log(adminSignIn)
     props.handleUpdateAdmin(adminSignIn)
 }
 
