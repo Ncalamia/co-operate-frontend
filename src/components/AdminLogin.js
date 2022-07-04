@@ -41,7 +41,7 @@ const HEROKU_URL_useraccount_Login = 'https://co-operate-backend.herokuapp.com/a
 const numOfAdmins = () => {
     if (admins.length > 1) {
         setAdminLimit(false)
-        alert("Admin account was already created. Please login")
+        alert("Admin accounts were already created. Please login")
     } else {
         setView('createAdmin')
     }
@@ -110,6 +110,7 @@ useEffect(() => {
         {view == 'login' ? <AdminAccLogin loginError={loginError} handleUpdateAdmin={handleUpdateAdmin} admins={admins}/> : ""}
         {view == 'createAdmin' ?  
             <AdminCreate createAdmin={createAdmin} setView={setView}/> : "" }
+        {adminLoggedIn ? <div><Link to={'/eventsAdmin'}>Events</Link></div> : "" }
         </div>
     )
 }

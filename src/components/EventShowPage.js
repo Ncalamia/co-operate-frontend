@@ -22,6 +22,7 @@ const EventShowPage = () => {
 
     let [signUps, setSignUps] = useState([])
 
+    const [search, setSearch] = useState("")
 
     ///////// URLs ///////////////
 const LOCAL_URL_events = 'http://localhost:8000/api/events'
@@ -113,37 +114,41 @@ useEffect(() => {
 
     return (
         <div>
-        <div>
-            <h1>{currentParty.title}</h1>
-            <h2>When: {currentParty.when}</h2>
-            <h2>Time: {currentParty.time}</h2>
-            <h2>Where: {currentParty.where}</h2>
-            <h2>More Info: {currentParty.notes}</h2>
-            <h2>id: {currentParty.id}</h2>
-        </div>
-        <div className="Parties">
-        <EventSignUpAdd handleCreateSignUp={handleCreateSignUp} currentParty={currentParty}/>
-{signUps.filter((signUp) => {
-    if (signUp.party === currentParty.id) {
-        // console.log("correct")
-        return signUp
-    } else {
-        // console.log("incorrect")
-    }
-    }).map((signUp) => {
-            return (
-        <div className="signUp" key={signUp.id}>
-          {/* <EventsComp party={party}/> */}
-            {/* <EventSignUpEdit handleUpdate={handleUpdate} signUp={signUp}/> */}
-            <button onClick={() => {handleDeleteSignUp(signUp)}}>Delete</button>
-            <Link to={`/event/${signUp.id}`}>
-                <div>{signUp.item}</div>
-                </Link>
-        </div>
-        )
-    })}
-    </div>
-        {/* <button onClick={() => {toggle ()}}>Sign Up</button> */}
+            <div key={currentParty.id}>
+                <h1>{currentParty.title}</h1>
+                <h2>When: {currentParty.when}</h2>
+                <h2>Time: {currentParty.time}</h2>
+                <h2>Where: {currentParty.where}</h2>
+                <h2>More Info: {currentParty.notes}</h2>
+                <h2>id: {currentParty.id}</h2>
+            </div>
+            <div className="Parties">
+                <div className="searchbar">
+                    <p className="stateSearch">Search to see if the item is available to bring</p>
+                    <input className="input-search" type="text" placeholder="Search..." onChange={event => {setSearch(event.target.value)}}/>
+                </div>
+                <EventSignUpAdd handleCreateSignUp={handleCreateSignUp} currentParty={currentParty}/>
+                {signUps.filter((signUp) => {
+                    if (signUp.party === currentParty.id && search == "") {
+                        return signUp
+                    } else if (signUp.party === currentParty.id && signUp.item.toLowerCase().includes(search.toLowerCase())) {
+                        return signUp
+                    }
+                }).map((signUp) => {
+                        return (
+                                <div>
+                                    <div className="signUpContainer" key={signUp.id}>
+                                        <div className='signUp'>
+                                            <h3>{signUp.name}</h3>
+                                            <h3>{signUp.item}</h3>
+                                            <h3>{signUp.party}</h3>
+                                        </div>
+                                        <button onClick={() => {handleDeleteSignUp(signUp)}}>Delete</button>
+                                    </div>
+                                </div>
+                        )})
+                    }
+            </div>
         </div>
     )
 }
