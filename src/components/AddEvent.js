@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import 'bulma/sass/base/_all.sass';
+
 
 const AddEvent = (props) => {
 
@@ -6,16 +8,20 @@ const AddEvent = (props) => {
 //////// States ////////////////
 //////////////////////////////
 
-let emptyParty = { title: '', when: '', time: '', where: '', notes:'' }
+/////////// Controls show/hide for new party/event form ////////////
+const [seeNewForm, setSeeNewForm] = useState(false)
 
+/////////// Sends in empty " " for each value to initate key ////////////
+let emptyParty = { title: '', when: '', time: '', where: '', notes:'' }
 const [party, setParty] = useState(emptyParty)
 
 ///////// Add party/event /////////
 
+///////////// Input from form for new party/event ////////////////
 const handleChange = (event) => {
     setParty({ ...party, [event.target.name]: event.target.value })
 }
-  
+///////////// Form Submission for new party/event ////////////////
 const handleSubmit = (event) => {
     event.preventDefault()
     props.handleCreate(party)
@@ -23,8 +29,22 @@ const handleSubmit = (event) => {
 }
 
 
+///////// Hide/Show New event/party Form ///////////
+const toggleNewForm = () => {
+  if (seeNewForm == true) {
+    setSeeNewForm(false)
+  } else if (seeNewForm == false) {
+    setSeeNewForm(true)
+  }
+}
+
   return (
-    <>
+    <div className='newParty'>
+      <div className='newPartyButton'>
+        <button onClick={() => {toggleNewForm()}}>New</button>
+      </div>
+      <div className='newForm'>
+        {seeNewForm ? 
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Event:</label>
         <input type="text" name="title" value={party.title} onChange={handleChange}/>
@@ -43,10 +63,12 @@ const handleSubmit = (event) => {
         <br />
         <br />
         <label htmlFor="notes">More Info: </label>
-        <input type="text" name="notes" value={party.notes} onChange={handleChange}/>
+        <textarea type="text" name="notes" value={party.notes} onChange={handleChange}></textarea>
         <input type="submit"/>
       </form>
-    </>
+      : "" }
+    </div>
+  </div>
   )
 }
 

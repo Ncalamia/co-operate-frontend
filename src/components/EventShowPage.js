@@ -2,7 +2,6 @@ import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import EventSignUpAdd from './EventSignUpAdd';
-import EventSignUpEdit from './EventSignUpEdit';
 
 
 const EventShowPage = () => {
@@ -11,17 +10,24 @@ const EventShowPage = () => {
 //////// Params ////////////////
 //////////////////////////////
 
-    let {id} = useParams()
+///////////// id of the current party ////////////////
+    let {numID} = useParams()
 
 
 ///////////////////////////////
 //////// States ////////////////
 //////////////////////////////
 
+/////////// Controls show/hide for new signUp form ////////////
+const [seeNewSignUpForm, setSeeNewSignUpForm] = useState(false)
+
+///////////// Holds info of current party object ////////////////
     let [currentParty, setCurrentParty] = useState({})
 
+///////////// All of the sign up in DB ////////////////
     let [signUps, setSignUps] = useState([])
 
+///////////// Holds value of search box ////////////////
     const [search, setSearch] = useState("")
 
     ///////// URLs ///////////////
@@ -32,9 +38,18 @@ const HEROKU_URL_events = 'https://co-operate-backend.herokuapp.com/api/events'
 const HEROKU_URL_employeeitems = 'https://co-operate-backend.herokuapp.com/api/employeeitems'
 
 
+///////// Hide/Show New signUp Form ///////////
+const toggleNewSignUpForm = () => {
+    if (seeNewSignUpForm == true) {
+        setSeeNewSignUpForm(false)
+    } else if (seeNewSignUpForm == false) {
+        setSeeNewSignUpForm(true)
+    }
+}
+
 ///////// Get specific event/party /////////
 const getCurrentParty = () => {
-    axios.get(HEROKU_URL_events + "/" + id)
+    axios.get(HEROKU_URL_events + "/" + numID)
     .then(response => setCurrentParty(response.data),
     err=> console.error(err)
     )
@@ -42,12 +57,11 @@ const getCurrentParty = () => {
 }
 
 
-
 ///////////////////////////////
 ///// CRUD for SignUps ////////
 //////////////////////////////
 
-//////// READ / FETCH ////////////////
+//////// READ / FETCH  signUps ////////////////
 const getSignUps = () => {
     axios
     .get(HEROKU_URL_employeeitems)
@@ -56,18 +70,18 @@ const getSignUps = () => {
     .catch((error) => console.error(error))
 }
 
-//////// CREATE //////////////
-
+//////// CREATE new signUp //////////////
 const handleCreateSignUp = (addSignUp) => {
     console.log(addSignUp)
     axios.post(HEROKU_URL_employeeitems, addSignUp)
     .then((response) => {
     setSignUps([...signUps, response.data])
     })
+    setSeeNewSignUpForm(false)
 }
 
-//////// UPDATE //////////////
 
+//////// UPDATE //////////////
 const handleUpdateSignUp = (editSignUp) => {
     axios.put(HEROKU_URL_employeeitems + '/' + editSignUp.id, editSignUp)
     .then((response) => {
@@ -92,7 +106,7 @@ const handleUpdateSignUp = (editSignUp) => {
 
 
 
-//////// DELETE //////////////
+//////// DELETE signUp //////////////
 const handleDeleteSignUp = (deletedSignUp) => {
     axios.delete(HEROKU_URL_employeeitems + '/' + deletedSignUp.id)
         .then((response) => {
@@ -102,10 +116,7 @@ const handleDeleteSignUp = (deletedSignUp) => {
 
 
 
-
-
 //////// PAGE LOAD //////////////
-
 useEffect(() => {
     getCurrentParty()
     getSignUps()
@@ -127,13 +138,20 @@ useEffect(() => {
                     <p className="stateSearch">Search to see if the item is available to bring</p>
                     <input className="input-search" type="text" placeholder="Search..." onChange={event => {setSearch(event.target.value)}}/>
                 </div>
-                <EventSignUpAdd handleCreateSignUp={handleCreateSignUp} currentParty={currentParty}/>
+                <div className='newSignUpButton'>
+                    <button onClick={() => {toggleNewSignUpForm()}}>New</button>
+                </div>
+                {seeNewSignUpForm ? 
+                <div>
+                    <EventSignUpAdd handleCreateSignUp={handleCreateSignUp} currentParty={currentParty} numID={numID}/> 
+                </div>
+                : "" } 
                 {signUps.filter((signUp) => {
                     if (signUp.party === currentParty.id && search == "") {
                         return signUp
                     } else if (signUp.party === currentParty.id && signUp.item.toLowerCase().includes(search.toLowerCase())) {
                         return signUp
-                    }
+                    } 
                 }).map((signUp) => {
                         return (
                                 <div>
@@ -141,7 +159,6 @@ useEffect(() => {
                                         <div className='signUp'>
                                             <h3>{signUp.name}</h3>
                                             <h3>{signUp.item}</h3>
-                                            <h3>{signUp.party}</h3>
                                         </div>
                                         <button onClick={() => {handleDeleteSignUp(signUp)}}>Delete</button>
                                     </div>

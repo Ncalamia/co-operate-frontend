@@ -5,21 +5,16 @@ import EventsComp from './EventsComp';
 import EventShowPage from './EventShowPage';
 
 
-
+///////// Normal view (not admin) of the events page /////////
 const EventsApp = () => {
-
-let navigate = useNavigate()
-
 
 ///////////////////////////////
 //////// States ////////////////
 //////////////////////////////
 
+///////// All of the parties/events in the DB ///////////
 let [parties, setParties] = useState([])
 
-///////////////////////////////
-//////// CRUD ////////////////
-//////////////////////////////
 
 ///////// URLs ///////////////
 const LOCAL_URL_events = 'http://localhost:8000/api/events'
@@ -28,7 +23,7 @@ const LOCAL_URL_employeeitems = 'http://localhost:8000/api/employeeitems'
 const HEROKU_URL_events = 'https://co-operate-backend.herokuapp.com/api/events'
 const HEROKU_URL_employeeitems = 'https://co-operate-backend.herokuapp.com/api/employeeitems'
 
-//////// READ / FETCH ////////////////
+//////// READ / FETCH  parties/events ////////////////
 const getParties = () => {
     axios
     .get(HEROKU_URL_events)
@@ -41,7 +36,6 @@ const getParties = () => {
 
 
 //////// PAGE LOAD //////////////
-
 useEffect(() => {
     getParties()
 }, [])

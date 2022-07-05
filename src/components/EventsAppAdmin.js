@@ -7,20 +7,18 @@ import EditEvent from './EditEvent';
 import EventShowPage from './EventShowPage';
 
 
-
+///////// Admin view of the events page, can perform CRUD /////////
 const EventsAppAdmin = () => {
-
-let navigate = useNavigate()
-
 
 ///////////////////////////////
 //////// States ////////////////
 //////////////////////////////
 
+///////// All of the parties/events in the DB ///////////
 let [parties, setParties] = useState([])
 
 ///////////////////////////////
-//////// CRUD ////////////////
+/// CRUD for events/parties///
 //////////////////////////////
 
 ///////// URLs ///////////////
@@ -30,7 +28,7 @@ const LOCAL_URL_employeeitems = 'http://localhost:8000/api/employeeitems'
 const HEROKU_URL_events = 'https://co-operate-backend.herokuapp.com/api/events'
 const HEROKU_URL_employeeitems = 'https://co-operate-backend.herokuapp.com/api/employeeitems'
 
-//////// READ / FETCH ////////////////
+//////// READ / FETCH parties/events for admin view ////////////////
 const getParties = () => {
   axios
     .get(HEROKU_URL_events)
@@ -41,8 +39,7 @@ const getParties = () => {
     .catch((error) => console.error(error))
 }
 
-//////// CREATE //////////////
-
+//////// CREATE parties/events for admin view //////////////
 const handleCreate = (addParty) => {
   axios.post(HEROKU_URL_events, addParty)
   .then((response) => {
@@ -50,8 +47,7 @@ const handleCreate = (addParty) => {
   })
 }
 
-//////// UPDATE //////////////
-
+//////// UPDATE parties/events for admin view //////////////
 const handleUpdate = (editParty) => {
   axios.put(HEROKU_URL_events + '/' + editParty.id, editParty)
   .then((response) => {
@@ -62,7 +58,7 @@ const handleUpdate = (editParty) => {
   })
 }
 
-//////// DELETE //////////////
+//////// DELETE parties/events for admin view //////////////
 const handleDelete = (deletedParty) => {
   axios.delete(HEROKU_URL_events + '/' + deletedParty.id)
       .then((response) => {
@@ -75,7 +71,6 @@ const handleDelete = (deletedParty) => {
 
 
 //////// PAGE LOAD //////////////
-
 useEffect(() => {
   getParties()
 }, [])
@@ -93,7 +88,6 @@ useEffect(() => {
           <EventsComp party={party}/>
           <EditEvent handleUpdate={handleUpdate} party={party}/>
           <button onClick={() => {handleDelete(party)}}>Delete</button>
-          <Link to={`/event/${party.id}`}>Sign Up</Link>
         </div>
         )
       })}

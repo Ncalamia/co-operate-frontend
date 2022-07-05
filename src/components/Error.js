@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
+///////// Error page for incorrect route ///////
 const error = () => {
     return (
         <div>

@@ -6,8 +6,6 @@ import { Navigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 
-
-
 const AdminLogin = () => {
 
 
@@ -24,9 +22,7 @@ const [loginError, setLoginError] = useState(false)
 
 ///////// Functions ///////////////
 
-
 ///////// Hide/Show Admin Login/Sign Up ///////////////
-
 const toggleView = (param) => {
     setView(param)
 }
@@ -38,6 +34,8 @@ const HEROKU_URL_useraccount = 'https://co-operate-backend.herokuapp.com/api/use
 
 const HEROKU_URL_useraccount_Login = 'https://co-operate-backend.herokuapp.com/api/useraccount/login'
 
+
+////// Only allows 2 admin accounts //////////////
 const numOfAdmins = () => {
     if (admins.length > 1) {
         setAdminLimit(false)
@@ -48,7 +46,7 @@ const numOfAdmins = () => {
 }
 
 
-//////// READ / FETCH ////////////////
+//////// READ / FETCH admins ////////////////
 const getAdmins = () => {
     axios
         .get(HEROKU_URL_useraccount)
@@ -60,8 +58,9 @@ const getAdmins = () => {
 }
 
 
-///////CREATE USER - new user login //////////
+///////CREATE new admin //////////
 const createAdmin = (addAdmin) => {
+    console.log(addAdmin)
     axios
         .post(HEROKU_URL_useraccount, addAdmin)
         .then((response) => {
@@ -70,7 +69,7 @@ const createAdmin = (addAdmin) => {
         })
 }
 
-// returning admin login
+/////// Returning admin, checks if username & password matches DB //////////
 const handleUpdateAdmin = (adminAccount) => {
     console.log(adminAccount)
     axios
@@ -97,7 +96,6 @@ const handleUpdateAdmin = (adminAccount) => {
 
 
 //////// PAGE LOAD //////////////
-
 useEffect(() => {
     getAdmins()
 }, [])
@@ -110,7 +108,9 @@ useEffect(() => {
         {view == 'login' ? <AdminAccLogin loginError={loginError} handleUpdateAdmin={handleUpdateAdmin} admins={admins}/> : ""}
         {view == 'createAdmin' ?  
             <AdminCreate createAdmin={createAdmin} setView={setView}/> : "" }
-        {adminLoggedIn ? <div><Link to={'/eventsAdmin'}>Events</Link></div> : "" }
+        {adminLoggedIn ? <div>
+                <Link to={'/eventsAdmin'}>Events</Link>
+            </div> : "" }
         </div>
     )
 }

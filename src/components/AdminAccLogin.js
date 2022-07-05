@@ -8,15 +8,16 @@ const AdminAccLogin = (props) => {
 //////// States ////////////////
 //////////////////////////////
 
+///////// Holds the value from the admin login form /////////
 const [adminSignIn, setAdminSignIn] = useState({...props.adminSignIn})
 
-//////////// Functions ////////////////
-
+///////// Admin login /////////
+///////////// Input from form for admin login ////////////////
 const handleChange = (event) => {
     setAdminSignIn({ ...adminSignIn, [event.target.name]: event.target.value })
 }
 
-
+///////////// Form Submission for admin login ////////////////
 const handleSubmit = (event) => {
     event.preventDefault()
     console.log(adminSignIn)

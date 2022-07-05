@@ -4,32 +4,29 @@ import AdminAccLogin from './AdminAccLogin'
 import { Navigate, Link } from 'react-router-dom'
 
 
-
 const AdminCreate = (props) => {
-
 
 ///////////////////////////////
 //////// States ////////////////
 //////////////////////////////
-let emptyAdmin = { username: '', password: '' }
 
+/////////// Sends in empty " " for each value to initate key ////////////
+let emptyAdmin = { username: '', password: '' }
 const [admin, setAdmin] = useState(emptyAdmin)
 
-
-///////// Functions ///////////////
-
+///////// Add new Admin /////////
+///////////// Input from form for new admin ////////////////
 const handleChange = (event) => {
     setAdmin({ ...admin, [event.target.name]: event.target.value })
 }
 
+///////////// Form Submission for new admin ////////////////
 const handleSubmit = (event) => {
     event.preventDefault()
     props.createAdmin(admin)
     setAdmin({ username: '', password: '' })
     props.setView('login')
 }
-
-
 
 
     return (

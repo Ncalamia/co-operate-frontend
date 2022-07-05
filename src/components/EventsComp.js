@@ -2,12 +2,8 @@
 
 const EventsComp = (props) => {
 
-    ///////////////////////////////
-    //////// States ////////////////
-    //////////////////////////////
     
-    
-    
+///////////// Reads all info for each event //////////////// 
       return (
         <div>
             <h4>{props.party.title}</h4>
