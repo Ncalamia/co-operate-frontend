@@ -56,7 +56,7 @@ const handleSubmit = (event) => {
                     <div className='control has-icons-left has-icons-right'>
                         <input className='input is-danger' name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
                         <span class="icon is-small is-left">
-                            <img className='iconCreate' src={LockIcon} alt="password icon"/>
+                            <img className='iconCreate' src={LockIconLogin} alt="password icon"/>
                         </span>
                     </div>
                     <h3 className='help is-danger'>Username or password is incorrent.</h3>
