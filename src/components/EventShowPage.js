@@ -4,6 +4,7 @@ import axios from 'axios'
 import EventSignUpAdd from './EventSignUpAdd';
 
 
+
 const EventShowPage = () => {
 
 ///////////////////////////////
@@ -81,28 +82,16 @@ const handleCreateSignUp = (addSignUp) => {
 }
 
 
-//////// UPDATE //////////////
-const handleUpdateSignUp = (editSignUp) => {
-    axios.put(HEROKU_URL_employeeitems + '/' + editSignUp.id, editSignUp)
-    .then((response) => {
-    console.log(editSignUp);
-    setSignUps(signUps.map((signUp) => {
-        return signUp.id !== response.data.id ? signUp : response.data
-        }))
-    })
-}
-// Filter and then map
-// return signUp.id !== response.data.id ? signUp.party === currentParty.id : response.data
-
-// {signUps.filter((signUp) => {
-//     if (signUp.party === currentParty.id) {
-//         console.log("correct")
-//         return signUp
-//     } else {
-//         console.log("incorrect")
-//     }
-//     }).map((signUp) => {
-//             return (
+// //////// UPDATE //////////////
+// const handleUpdateSignUp = (editSignUp) => {
+//     axios.put(HEROKU_URL_employeeitems + '/' + editSignUp.id, editSignUp)
+//     .then((response) => {
+//     console.log(editSignUp);
+//     setSignUps(signUps.map((signUp) => {
+//         return signUp.id !== response.data.id ? signUp : response.data
+//         }))
+//     })
+// }
 
 
 
@@ -124,28 +113,34 @@ useEffect(() => {
 
 
     return (
-        <div>
-            <div key={currentParty.id}>
-                <h1>{currentParty.title}</h1>
-                <h2>When: {currentParty.when}</h2>
-                <h2>Time: {currentParty.time}</h2>
-                <h2>Where: {currentParty.where}</h2>
-                <h2>More Info: {currentParty.notes}</h2>
-                <h2>id: {currentParty.id}</h2>
-            </div>
-            <div className="Parties">
-                <div className="searchbar">
-                    <p className="stateSearch">Search to see if the item is available to bring</p>
-                    <input className="input-search" type="text" placeholder="Search..." onChange={event => {setSearch(event.target.value)}}/>
+        <div className='eventShowPage has-background-link-light pb-6 pt-1'>
+            <section id="hero" classname="hero" key={currentParty.id}>
+                <div className='hero-body has-background-link my-6 py-2'>
+                    <h1 className='eventTitle has-text-centered	 is-size-2 has-text-white pb-3'>{currentParty.title}</h1>
+                    <h2 className='subtitle is-size-5 has-text-white my-3'>
+                        <strong className='has-text-white has-text-weight-bold	'>When:</strong> {currentParty.when}</h2>
+                    <h2 className='subtitle is-size-5 has-text-white my-3'>
+                        <strong className='has-text-white has-text-weight-bold	'>Time:</strong> {currentParty.time}</h2>
+                    <h2 className='subtitle is-size-5 has-text-white my-3'>
+                        <strong className='has-text-white has-text-weight-bold	'>Where:</strong> {currentParty.where}</h2>
+                    <h2 className='subtitle is-size-5 has-text-white my-3'>
+                        <strong className='has-text-white has-text-weight-bold'>More Info:</strong> {currentParty.notes}</h2>
                 </div>
-                <div className='newSignUpButton'>
-                    <button onClick={() => {toggleNewSignUpForm()}}>New</button>
+            </section>
+            <div className="SignUps">
+                <div className='newSignUpDiv pb-6'>
+                    <button className='button is-info is-light is-outlined' onClick={() => {toggleNewSignUpForm()}}>Sign Up</button>
                 </div>
                 {seeNewSignUpForm ? 
-                <div>
+                <div className='newSignUpDiv'>
                     <EventSignUpAdd handleCreateSignUp={handleCreateSignUp} currentParty={currentParty} numID={numID}/> 
                 </div>
                 : "" } 
+                <div className="searchDiv px-4 mb-6">
+                    <p className="stateSearch is-size-5 has-text-centered px-4 pb-5">Search to see if the item is available to bring</p>
+                    <input className="input is-link" type="text" placeholder="Search..." onChange={event => {setSearch(event.target.value)}}/>
+                </div>
+                <div className='signUps mb-6'>
                 {signUps.filter((signUp) => {
                     if (signUp.party === currentParty.id && search == "") {
                         return signUp
@@ -154,17 +149,24 @@ useEffect(() => {
                     } 
                 }).map((signUp) => {
                         return (
-                                <div>
-                                    <div className="signUpContainer" key={signUp.id}>
-                                        <div className='signUp'>
-                                            <h3>{signUp.name}</h3>
-                                            <h3>{signUp.item}</h3>
-                                        </div>
-                                        <button onClick={() => {handleDeleteSignUp(signUp)}}>Delete</button>
+                                <div className="signUpContainer" key={signUp.id}>
+                                    <div className='signUp'>
+                                        <h3 className='is-size-5 py-1'>{signUp.name}</h3>
+                                        <h3 className='is-size-4'>{signUp.item}</h3>
                                     </div>
+                                    <div className='mt-4'>
+                                        <button className="button is-danger is-outlined py-2 px-3" onClick={() => {handleDeleteSignUp(signUp)}}>
+                                            <span>Delete</span>
+                                            <span class="icon is-small">
+                                                <span className='has-text-weight-bold	'>X</span>
+                                            </span>
+                                        </button>
+                                    </div>
+    
                                 </div>
                         )})
                     }
+                </div>
             </div>
         </div>
     )

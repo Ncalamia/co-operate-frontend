@@ -1,27 +1,290 @@
+@import "../node_modules/bulma/css/bulma.css";
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300&display=swap');
 
-.homepage {
-  background-color: #f0d69f;
+body {
+  font-family: 'Kantumruy Pro', sans-serif;
+}
+
+.button {
+  box-shadow: 1px 1px 3px grey;
+}
+/* Navbar */
+#navbar-title {
+  font-size: 1.5em;
+  text-shadow: 1px 1px 5px grey;
+  color: white;
+}
+.hamburger {
+  color: white;
+}
+.navbar {
+  box-shadow: 1px 1px 10px grey;
+  background-color: #324d5e;
+}
+.welcomeButton {
+  background-color: #324d5e;
+  box-shadow: none;
+}
+#eventsButton {
+  box-shadow: none;
+}
+#updatesButton {
+  box-shadow: none;
+}
+#adminButton {
+  box-shadow: none;
+}
+/* Navbar */
+
+/* Home */
+.homePage {
+  background-color: #f2f2f2;
   height: 50em;
-  padding: 1em;
 }
 .homepic {
-  z-index: -1;
-  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 5s;
 }
 .title {
-  color: #324d5e;
   text-shadow: 2px 2px 6px #324d5e;
-  margin-bottom: 1em;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  width: 100%;
   animation: fadeIn 5s;
   opacity: 90%;
 }
-
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
+}
+/* Home */
+
+/* Events, normal view */
+.parties {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.party {
+  border: 2px solid hsl(348, 100%, 61%);
+  margin: 1em;
+  padding: 1.5em;
+  border-radius: 25px;
+  box-shadow: 1px 1px 20px grey;
+}
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+/* Events, normal view */
+
+/* Event */
+.hero-body {
+  text-shadow: 1px 1px 5px grey;
+}
+#hero {
+  box-shadow: 1px 1px 20px grey;
+}
+.newSignUpDiv {
+  display: flex;
+  justify-content: center;
+}
+.newSignUpForm {
+  width: 80%;
+}
+.signUps {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.signUpContainer {
+  border: 2px solid hsl(217, 71%, 45%)	;
+  background-color: white;
+  margin: 1em;
+  padding: 1.5em;
+  border-radius: 25px;
+  box-shadow: 1px 1px 20px grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.stateSearch {
+  text-shadow: 5px 5px 30px grey;
+}
+.signUp {
+  text-shadow: 5px 5px 30px grey;
+}
+/* Event */
+
+/* Admin Create */
+.iconCreate {
+  opacity: 80%;
+  height: 70%;
+  width: 70%;
+}
+/* Admin Create */
+
+/* Admin Page  */
+.adminButton {
+  display: flex;
+  flex-direction: column;
+}
+.adminPage {
+  padding-bottom: 30em;
+}
+/* Admin Page */
+
+
+/* Admin Access - Events*/
+.partyAdmin {
+  border: 2px solid hsl(204, 86%, 53%)	;
+  margin: 1em;
+  padding: 1.5em;
+  border-radius: 25px;
+  box-shadow: 1px 1px 20px grey;
+}
+.newPartyButton {
+  display: flex;
+  justify-content: center;
+}
+.partiesAdmin {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* Admin Access - Events*/
+
+/* Updates */
+.updatesPage {
+  padding-top: 1em;
+  padding-bottom: 50em;
+}
+#updates {
+  border: 2px solid hsl(204, 86%, 53%);
+  border-radius: 10px;
+  padding-bottom: 2em;
+}
+/* Updates */
+
+/* Media Queries */
+@media (min-width: 425px) {
+    /* Events, normal view */
+.parties {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.party {
+  padding: 1em;
+  width: 80%;
+}
+.info {
+  margin-left: 1em;
+}
+/* Events, normal view */
+
+/* Events, admin view */
+  .partiesAdmin {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .adminView {
+    padding-top: 1em;
+  }
+
+/* Events, admin view */
+
+/* Create admin */
+#adminCreate {
+  width: 70%;
+  margin: auto;
+}
+/* Create admin  */
+
+/* Login admin */
+#loginAdmin {
+  width: 70%;
+  margin: auto;
+}
+/* Login admin  */
+
+
+}
+@media (min-width: 760px) {
+/* Home */
+  #homeImgDiv {
+    height: 35em;
+    width: 35em;
+  }
+/* Home */
+
+/* Events, normal view */
+.party {
+  margin: 1em;
+  padding: 1.5em;
+  border-radius: 25px;
+  width: 45% ;
+  text-shadow: 1px 1px 10px hsl(0, 0%, 90%);
+}
+/* Events, normal view */
+
+/* Create admin */
+#adminCreate {
+  width: 50%;
+}
+/* Create admin  */
+
+/* Login admin */
+#loginAdmin {
+  width: 50%;
+}
+/* Login admin  */
+}
+
+
+@media (min-width: 1024px) {
+  .homePage {
+    height: 100em;
+  }
+
+/* Navbar */
+  #navbar-title {
+    font-size: 2.2em;
+    padding-top: 0.2em;
+    text-shadow: 1px 1px 5px grey;
+    height: 2em;
+    margin-right: 0.5em;
+  }
+  .welcomeDiv {
+    display: flex;
+  }
+  .welcomeButton {
+    margin: auto;
+    padding-left: 2em;
+  }
+  #eventsButton {
+    background-color: hsl(348, 100%, 61%);
+    color: white;
+  }
+  #updatesButton {
+    background-color: hsl(204, 86%, 53%);
+    color: white;
+  }
+  #adminButton {
+    background-color: hsl(171, 100%, 41%);
+    color: white;
+  }
+/* Navbar */
+
+/* Events, normal view */
+.party {
+  width: 30% ;
+}
+.parties {
+  padding-bottom: 5em;
+}
+/* Events, normal view */
+.adminPage {
+  padding-bottom: 50em;
+}
+
 }
 

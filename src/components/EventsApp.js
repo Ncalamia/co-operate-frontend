@@ -15,7 +15,6 @@ const EventsApp = () => {
 ///////// All of the parties/events in the DB ///////////
 let [parties, setParties] = useState([])
 
-
 ///////// URLs ///////////////
 const LOCAL_URL_events = 'http://localhost:8000/api/events'
 const LOCAL_URL_employeeitems = 'http://localhost:8000/api/employeeitems'
@@ -42,19 +41,19 @@ useEffect(() => {
 
 
     return (
-        <div>
-        <div className="Parties">
-    {parties.map((party) => {
-        return (
-            <div className="party" key={party.id}>
-            <EventsComp party={party}/>
-            <Link to={`/event/${party.id}`}>Sign Up</Link>
+        <div className='partyPage'>
+            <div className="parties has-background-info-light">
+        {parties.map((party) => {
+                return (
+                <div className="party has-background-white" key={party.id}>
+                    <EventsComp party={party}/>
+                    <Link to={`/event/${party.id}`} className="button is-link is-light mt-3">Sign Up</Link>
+                </div>
+                )
+            })}
             </div>
-            )
-        })}
-        </div>
         <Outlet />
-        </div>
+    </div>
     )
 }
 

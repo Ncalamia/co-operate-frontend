@@ -102,15 +102,22 @@ useEffect(() => {
 
 
     return (
-        <div>
-            <button onClick={()=> numOfAdmins()}>Create Admin Account</button>
-            <button onClick={()=> toggleView('login')}>Login</button>
+        <div className='adminPage has-background-success-light pt-3'>
+            <div className='adminButton m-3'>
+                <button className='button is-size-5 m-4 px-4 is-info has-text-weight-bold' onClick={()=> numOfAdmins()}>Create Admin Account</button>
+                <button className='button is-size-5 m-4 px-4 is-primary has-text-weight-bold' onClick={()=> toggleView('login')}>Login</button>
+            </div>
         {view == 'login' ? <AdminAccLogin loginError={loginError} handleUpdateAdmin={handleUpdateAdmin} admins={admins}/> : ""}
         {view == 'createAdmin' ?  
             <AdminCreate createAdmin={createAdmin} setView={setView}/> : "" }
-        {adminLoggedIn ? <div>
-                <Link to={'/eventsAdmin'}>Events</Link>
-            </div> : "" }
+        {adminLoggedIn ? 
+            <article class="message is-info mt-5 m-3">
+                <div class="message-header">
+                    <p className='is-size-4'>Admin Access</p>
+                </div>
+                <div class="message-body">
+                    <Link className='is-size-5' to={'/eventsAdmin'}>Events</Link>                </div>
+            </article> : "" }
         </div>
     )
 }

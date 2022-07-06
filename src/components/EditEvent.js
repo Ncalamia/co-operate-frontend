@@ -22,6 +22,7 @@ const [party, setParty] = useState({...props.party})
   const handleSubmit = (event) => {
     event.preventDefault()
     props.handleUpdate(party)
+    setSeeEditForm(false)
   }
 
 ///////// Hide/Show Edit Form ///////////
@@ -36,32 +37,44 @@ const toggleEditForm = () => {
 
 
   return(
-    <div className='editparty'>
-      <div className='editPartyButton'>
-        <button onClick={() => {toggleEditForm()}}>Edit</button>
+    <div className='editParty'>
+      <div className='editPartyButton mt-3'>
+        <button className='button is-link is-outlined is-light py-2 px-4' onClick={() => {toggleEditForm()}}>Edit</button>
       </div>
-      <div className='editForm'>
+      <div className='editForm my-4'>
         {seeEditForm ? 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Event: </label>
-            <input type='text' name='title' value={party.title} onChange={handleChange}/>
-            <br/>
-            <br/>
-            <label htmlFor="when">When: </label>
-            <input type='text' name='when' value={party.when} onChange={handleChange}/>
-            <br/>
-            <br/>
-            <label htmlFor="time">Time: </label>
-            <input type='text' name='time' value={party.time} onChange={handleChange}/>
-            <br/>
-            <br/>
-            <label htmlFor="where">Where: </label>
-            <input type='text' name='where' value={party.where} onChange={handleChange}/>
-            <br/>
-            <br/>
-            <label htmlFor="notes">More Info: </label>
-            <textarea type='text' name='notes' value={party.notes} onChange={handleChange}/>
-            <button type='submit'>Submit</button>
+            <div className='field'>
+              <label className="label" htmlFor="title">Event: </label>
+              <div className='control'>
+                <input className='input' type='text' name='title' value={party.title} onChange={handleChange}/>
+              </div>
+            </div>
+            <div className='field'>
+              <label className="label" htmlFor="when">When: </label>
+              <div className='control'>
+                <input className='input' type='text' name='when' value={party.when} onChange={handleChange}/>
+              </div>
+            </div>
+            <div className='field'>
+              <label className="label" htmlFor="time">Time: </label>
+              <div className='control'>
+                <input className='input' type='text' name='time' value={party.time} onChange={handleChange}/>
+              </div>
+            </div>
+            <div className='field'>
+              <label className="label" htmlFor="where">Where: </label>
+              <div className='control'>
+                <input className='input' type='text' name='where' value={party.where} onChange={handleChange}/>
+              </div>
+            </div>
+            <div className='field'>
+              <label className="label" htmlFor="notes">More Info: </label>
+              <div className='control'>
+                <textarea className='input' type='text' name='notes' value={party.notes} onChange={handleChange}/>
+              </div>
+            </div>
+            <button className='button is-success is-outlined is-light has-text-weight-semibold px-4 mt-4 mb-4' type='submit'>Submit</button>
           </form> 
           : "" }
       </div>

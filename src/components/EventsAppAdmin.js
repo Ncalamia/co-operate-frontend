@@ -78,19 +78,27 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <h1>App.js</h1>
-      <div className="Parties">
+    <div className='adminView pb-6 has-background-info-light'>
+      <div className="partiesAdminCreate">
       <AddEvent handleCreate={handleCreate}/>
+      <div className='partiesAdmin'>
   {parties.map((party) => {
     return (
-        <div className="party" key={party.id}>
+        <div className="partyAdmin has-background-white" key={party.id}>
           <EventsComp party={party}/>
           <EditEvent handleUpdate={handleUpdate} party={party}/>
-          <button onClick={() => {handleDelete(party)}}>Delete</button>
+          <div className='mt-4'>
+            <button className='button is-danger is-outlined is-light py-2 px-3' onClick={() => {handleDelete(party)}}>
+              <span>Delete</span>
+              <span class="icon is-small">
+                <span className='has-text-weight-bold'>X</span>
+              </span>
+            </button>
+          </div>
         </div>
         )
       })}
+      </div>
       </div>
       <Outlet />
     </div>

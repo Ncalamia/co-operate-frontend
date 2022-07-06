@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import 'bulma/sass/base/_all.sass';
 
 
 const AddEvent = (props) => {
@@ -26,6 +25,7 @@ const handleSubmit = (event) => {
     event.preventDefault()
     props.handleCreate(party)
     setParty({ title: '', when: '', time: '', where: '', notes:'' })
+    setSeeNewForm(false)
 }
 
 
@@ -39,33 +39,35 @@ const toggleNewForm = () => {
 }
 
   return (
-    <div className='newParty'>
+    <div className='newParty mx-4 my-5'>
       <div className='newPartyButton'>
-        <button onClick={() => {toggleNewForm()}}>New</button>
+        <button className='button is-info has-text-weight-semibold is-size-5 mb-4 px-5 mb-4' onClick={() => {toggleNewForm()}}>Add New Event</button>
       </div>
-      <div className='newForm'>
+      <div className='newPartyForm'>
         {seeNewForm ? 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Event:</label>
-        <input type="text" name="title" value={party.title} onChange={handleChange}/>
-        <br />
-        <br />
-        <label htmlFor="when">When: </label>
-        <input type="text" name="when" value={party.when} onChange={handleChange}/>
-        <br />
-        <br />
-        <label htmlFor="time">Time: </label>
-        <input type="text" name="time" value={party.time} onChange={handleChange}/>
-        <br />
-        <br />
-        <label htmlFor="where">Where: </label>
-        <input type="text" name="where" value={party.where} onChange={handleChange}/>
-        <br />
-        <br />
-        <label htmlFor="notes">More Info: </label>
-        <textarea type="text" name="notes" value={party.notes} onChange={handleChange}></textarea>
-        <input type="submit"/>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className='field'>
+            <label className="label" htmlFor="title">Event</label>
+            <input className='input is-info' type="text" name="title" value={party.title} onChange={handleChange}/>
+          </div>
+          <div className='field'>
+            <label className="label" htmlFor="when">When </label>
+            <input className='input is-info' type="text" name="when" value={party.when} onChange={handleChange}/>
+          </div>
+          <div className='field'>
+            <label className="label" htmlFor="time">Time </label>
+            <input className='input is-info' type="text" name="time" value={party.time} onChange={handleChange}/>
+          </div>
+          <div className='field'>
+            <label className="label" htmlFor="where">Where </label>
+            <input className='input is-info' type="text" name="where" value={party.where} onChange={handleChange}/>
+          </div>
+          <div className='field'>
+            <label className="label" htmlFor="notes">More Info </label>
+            <textarea className='input is-info' type="text" name="notes" value={party.notes} onChange={handleChange}></textarea>
+          </div>
+          <input className='button is-success is-outlined is-light has-text-weight-semibold px-4 mt-4 mb-6' type="submit"/>
+        </form>
       : "" }
     </div>
   </div>

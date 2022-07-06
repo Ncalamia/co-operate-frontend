@@ -13,6 +13,8 @@ import EventShowPage from './components/EventShowPage';
 import AdminLogin from './components/AdminLogin';
 import AdminCreate from './components/AdminCreate';
 import AdminAccLogin from './components/AdminAccLogin';
+import UpdatesPage from './components/UpdatesPage';
+
 
 
 
@@ -28,7 +30,8 @@ const App = () => {
         <Route path="eventsAdmin" element={<EventsAppAdmin/>}/>
         <Route path="events" element={<EventsApp/>}/>
         <Route path="/event/:numID" element={<EventShowPage/>}/>
-        <Route path="/admin" element={<AdminLogin/>} />
+        <Route path="/admin" element={<AdminLogin/>}/>
+        <Route path="/updates" element={<UpdatesPage/>}/>
         <Route path="*" element={<Error/>}/>
       </Routes>
     </Router>

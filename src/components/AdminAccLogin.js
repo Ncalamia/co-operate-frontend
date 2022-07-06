@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import LockIcon from '../Lock.png'
+import UserIcon from '../User.png'
 
 
 const AdminAccLogin = (props) => {
@@ -27,22 +29,40 @@ const handleSubmit = (event) => {
 
     return (
         <div>
-            <div>AdminAccLogin</div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input type="text" name="username" value={adminSignIn.username} onChange={handleChange} />
-                <br />
-                <br />
-                <label htmlFor="password">Password: </label>
-                <input name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
-                <br />
-                <br />
-                <input type="submit" />
+            <form id="loginAdmin" onSubmit={handleSubmit}>
+                <div className='field mx-3 mt-5'>
+                    <label className='label' htmlFor="username">Username </label>
+                    <div className='control has-icons-left has-icons-right'>
+                        <input className='input is-link' type="text" name="username" value={adminSignIn.username} onChange={handleChange} />
+                        <span class="icon is-small is-left">
+                            <img className='iconCreate' src={UserIcon}/>
+                        </span>
+                    </div>
+                </div>
+{/* Login Error not true - display normal */}
+{!props.loginError ?
+                <div className='field mx-3 mb-5'>
+                    <label className='label' htmlFor="password">Password </label>
+                    <div className='control has-icons-left has-icons-right'>
+                        <input className='input is-link' name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
+                        <span class="icon is-small is-left">
+                            <img className='iconCreate' src={LockIcon}/>
+                        </span>
+                    </div> 
+                </div> : 
+//  Login Error true - make input red and display message
+                <div className='field mx-3 mb-5'>
+                    <label className='label' htmlFor="password">Password: </label>                   
+                    <div className='control has-icons-left has-icons-right'>
+                        <input className='input is-danger' name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
+                        <span class="icon is-small is-left">
+                            <img className='iconCreate' src={LockIcon}/>
+                        </span>
+                    </div>
+                    <h3 className='help is-danger'>Username or password is incorrent.</h3>
+                </div> }
+                <input className='button is-success mx-4 has-text-weight-medium' type="submit" />
             </form>
-            {props.loginError ? <div>
-                <h3>Username or password is incorrent. Please try again.</h3>
-            </div> : ""}
-            
         </div>
     )
 }
