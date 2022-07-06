@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import AdminAccLogin from './AdminAccLogin'
 import { Navigate, Link } from 'react-router-dom'
-import LockIcon from '../Lock.png'
-import UserIcon from '../User.png'
+import LockIcon from '../Lock.jpeg'
+import UserIcon from '../User.jpeg'
 
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import LockIcon from '../Lock.png'
-import UserIcon from '../User.png'
+import LockIcon from '../Lock.jpeg'
+import UserIcon from '../User.jpeg'
 
 
 const AdminAccLogin = (props) => {
