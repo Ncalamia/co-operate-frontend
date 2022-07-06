@@ -167,6 +167,11 @@ body {
 
 /* Media Queries */
 @media (min-width: 425px) {
+  /* Home Page */
+  .homePage {
+    height: 60em;
+  }
+/* Home Page */
     /* Events, normal view */
 .parties {
   flex-direction: row;
@@ -209,12 +214,15 @@ body {
 
 }
 @media (min-width: 760px) {
-/* Home */
+/* Home Page */
   #homeImgDiv {
     height: 35em;
     width: 35em;
   }
-/* Home */
+  .homePage {
+    height: 60em;
+  }
+/* Home Page*/
 
 /* Events, normal view */
 .party {
@@ -241,9 +249,11 @@ body {
 
 
 @media (min-width: 1024px) {
+/* Home Page */
   .homePage {
     height: 100em;
   }
+/* Home Page */
 
 /* Navbar */
   #navbar-title {
