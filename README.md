@@ -4,9 +4,8 @@
 
 
 ## Project Links 
----
-[Frontend Heroku](https://co-operate-frontend.herokuapp.com/)
-[Backend Heroku](https://co-operate-backend.herokuapp.com/)
+* [Frontend Heroku](https://co-operate-frontend.herokuapp.com/)
+* [Backend Heroku](https://co-operate-backend.herokuapp.com/)
 
 ## Technologies Used
 * Python
