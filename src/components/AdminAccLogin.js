@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import LockIcon from '../Lock.jpeg'
-import UserIcon from '../User.jpeg'
+import LockIconLogin from '../Lock.jpeg'
+import UserIconLogin from '../User.jpeg'
 
 
 const AdminAccLogin = (props) => {
@@ -35,7 +35,7 @@ const handleSubmit = (event) => {
                     <div className='control has-icons-left has-icons-right'>
                         <input className='input is-link' type="text" name="username" value={adminSignIn.username} onChange={handleChange} />
                         <span class="icon is-small is-left">
-                            <img className='iconCreate' src={UserIcon}/>
+                            <img className='iconCreate' src={UserIconLogin} alt="user icon"/>
                         </span>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const handleSubmit = (event) => {
                     <div className='control has-icons-left has-icons-right'>
                         <input className='input is-link' name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
                         <span class="icon is-small is-left">
-                            <img className='iconCreate' src={LockIcon}/>
+                            <img className='iconCreate' src={LockIconLogin} alt="password icon"/>
                         </span>
                     </div> 
                 </div> : 
@@ -56,7 +56,7 @@ const handleSubmit = (event) => {
                     <div className='control has-icons-left has-icons-right'>
                         <input className='input is-danger' name="password" value={adminSignIn.password} onChange={handleChange} type="password" />
                         <span class="icon is-small is-left">
-                            <img className='iconCreate' src={LockIcon}/>
+                            <img className='iconCreate' src={LockIcon} alt="password icon"/>
                         </span>
                     </div>
                     <h3 className='help is-danger'>Username or password is incorrent.</h3>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 
 const AddEvent = (props) => {
@@ -31,9 +31,9 @@ const handleSubmit = (event) => {
 
 ///////// Hide/Show New event/party Form ///////////
 const toggleNewForm = () => {
-  if (seeNewForm == true) {
+  if (seeNewForm === true) {
     setSeeNewForm(false)
-  } else if (seeNewForm == false) {
+  } else if (seeNewForm === false) {
     setSeeNewForm(true)
   }
 }

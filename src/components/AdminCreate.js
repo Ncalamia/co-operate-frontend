@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import AdminAccLogin from './AdminAccLogin'
-import { Navigate, Link } from 'react-router-dom'
 import LockIcon from '../Lock.jpeg'
 import UserIcon from '../User.jpeg'
 
@@ -48,16 +46,16 @@ const handleSubmit = (event) => {
                         <div className='control has-icons-left has-icons-right'>
                             <input className='input is-info' type="text" name="username" value={admin.username} onChange={handleChange} />
                             <span class="icon is-small is-left">
-                                <img className='iconCreate' src={UserIcon}/>
+                                <img className='iconCreate' src={UserIcon} alt="user icon"/>
                             </span>
                         </div>
                     </div>
                     <div className='field mx-3 mb-5'>
                         <label className='label' htmlFor="password">Create Password</label>
                         <div className='control has-icons-left has-icons-right'>
-                            <input className='input is-info' type="text" name="password" type="password" value={admin.password} onChange={handleChange} />
+                            <input className='input is-info' name="password" type="password" value={admin.password} onChange={handleChange} />
                             <span class="icon is-small is-left">
-                                <img className='iconCreate' src={LockIcon}/>
+                                <img className='iconCreate' src={LockIcon} alt="password icon"/>
                             </span>
                         </div>
                     </div>

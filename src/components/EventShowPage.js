@@ -1,4 +1,4 @@
-import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import EventSignUpAdd from './EventSignUpAdd';
@@ -41,9 +41,9 @@ const HEROKU_URL_employeeitems = 'https://co-operate-backend.herokuapp.com/api/e
 
 ///////// Hide/Show New signUp Form ///////////
 const toggleNewSignUpForm = () => {
-    if (seeNewSignUpForm == true) {
+    if (seeNewSignUpForm === true) {
         setSeeNewSignUpForm(false)
-    } else if (seeNewSignUpForm == false) {
+    } else if (seeNewSignUpForm === false) {
         setSeeNewSignUpForm(true)
     }
 }
@@ -94,7 +94,6 @@ const handleCreateSignUp = (addSignUp) => {
 // }
 
 
-
 //////// DELETE signUp //////////////
 const handleDeleteSignUp = (deletedSignUp) => {
     axios.delete(HEROKU_URL_employeeitems + '/' + deletedSignUp.id)
@@ -142,7 +141,7 @@ useEffect(() => {
                 </div>
                 <div className='signUps mb-6'>
                 {signUps.filter((signUp) => {
-                    if (signUp.party === currentParty.id && search == "") {
+                    if (signUp.party === currentParty.id && search === "") {
                         return signUp
                     } else if (signUp.party === currentParty.id && signUp.item.toLowerCase().includes(search.toLowerCase())) {
                         return signUp

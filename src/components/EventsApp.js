@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams, Link, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import EventsComp from './EventsComp';
-import EventShowPage from './EventShowPage';
 
 
 ///////// Normal view (not admin) of the events page /////////

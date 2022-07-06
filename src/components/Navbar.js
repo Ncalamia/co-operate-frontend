@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import pic from '../teamwork-people.jpeg'
 // import 'bulma/css/bulma.min.css';
 
@@ -13,9 +13,9 @@ const [seeNavbar, setSeeNavbar] = useState(false)
 
 ///////// Hide/Show Navbar ///////////
 const toggleNavbar = () => {
-    if (seeNavbar == true) {
+    if (seeNavbar === true) {
         setSeeNavbar(false)
-    } else if (seeNavbar == false) {
+    } else if (seeNavbar === false) {
         setSeeNavbar(true)
     }
 }
