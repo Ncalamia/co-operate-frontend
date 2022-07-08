@@ -1,4 +1,6 @@
-@import "../node_modules/bulma/css/bulma.css";
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+
 @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300&display=swap');
 
 body {
@@ -197,6 +199,19 @@ body {
 
 /* Events, admin view */
 
+/* Sign Ups */
+.signUps {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.signUpContainer {
+  padding: 1em;
+  width: 60%;
+}
+/* Sign Ups */
+
+
 /* Create admin */
 #adminCreate {
   width: 70%;
@@ -245,7 +260,21 @@ body {
   width: 50%;
 }
 /* Login admin  */
+
+/* Sign Ups */
+.signUps {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+.signUpContainer {
+  padding: 1em;
+  width: 40%;
+}
+/* Sign Ups */
+
+}
+
 
 
 @media (min-width: 1024px) {
@@ -295,6 +324,12 @@ body {
 .adminPage {
   padding-bottom: 50em;
 }
+/* Sign Ups */
+
+.signUpContainer {
+  width: 20%;
+}
+/* Sign Ups */
 
 }
 
